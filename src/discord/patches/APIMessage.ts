@@ -60,6 +60,11 @@ APIMessage.prototype.resolveData = function afterResolveData() {
 		}
 	}
 
+	// do not ping users by default
+	if (!allowedMentions && this.options.message_reference) {
+		allowedMentions = { replied_user: false };
+	}
+
 	this.data = {
 		content,
 		tts,
